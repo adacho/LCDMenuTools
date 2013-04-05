@@ -1,0 +1,39 @@
+byte updown[8] = {
+  B00100,
+  B01110,
+  B11111,
+  B00000,
+  B11111,
+  B01110,
+  B00100,
+}
+
+byte left[8] = {
+  B00001,
+  B00011,
+  B00111,
+  B01111,
+  B00111,
+  B00011,
+  B00001,
+}
+
+byte right[8] = {
+B10000,
+B11000,
+B11100,
+B11110,
+B11100,
+B11000,
+B10000,
+}
+
+
+ 
+void setup() {
+  lcd.createChar(0, updown);
+  lcd.createChar(1, left);
+  lcd.createChar(0, right);
+  lcd.begin(16, 2);  
+  lcd.write(byte(0));
+}
