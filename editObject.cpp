@@ -14,7 +14,7 @@ void editObject::setLCD (LiquidCrystal* newLCD){
 }
 
 void editObject::setValue(int newValue){
-	if (newValue != Value){
+	if (newValue >= minValue && newValue <= maxValue && newValue != Value){
 		Value=newValue;
 		ValueAsString = String(Value);
 		if (ValueAsString.length() <= 1){
@@ -46,11 +46,12 @@ editObject* editObject::getNext(){
 editObject::editObject(int x, int y, int minval, int maxval, LiquidCrystal* newLCD, editObject* next, editObject* prev){
 	X = x;
 	Y = y;
-	minVal = minval;
-	maxVal = maxval;
+	minValue = minval;
+	maxValue = maxval;
 	LCD = newLCD;
 	Next = next;
 	Prev = prev;
+	readOnly = true;
 	editMode = false;
 	if (next == NULL) {
 		next = this;
@@ -60,3 +61,24 @@ editObject::editObject(int x, int y, int minval, int maxval, LiquidCrystal* newL
 	}
 	
 }
+
+void editObject::setReadOnly(bool mode){
+	readOnly = mode;
+}
+
+void editObject::incrementValue(int increment = 1){
+	setValue(Value + increment);
+}
+
+void editObject::decrementValue(int decrement = 1){
+	setValue(Value - decrement);
+}
+
+void editObject::setEditMode(bool mode){
+	if (!readOnly) editMode = mode;
+	editMode=readOnly?false:mode;
+}
+bool editObject::getEditMode(){
+	return editMode;
+}
+
