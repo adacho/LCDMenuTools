@@ -33,7 +33,7 @@ B10000,
 void setup() {
   lcd.createChar(0, updown);
   lcd.createChar(1, left);
-  lcd.createChar(0, right);
+  lcd.createChar(2, right);
   lcd.begin(16, 2);  
   lcd.write(byte(0));
 }

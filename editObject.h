@@ -1,18 +1,22 @@
 #include <WString.h>
 #include <RTClib.h>
 #include <LiquidCrystal.h>
+#include <Arduino.h>
 
 
 class editObject {
 private:
 	int X, Y, Value, minValue, maxValue;
 	LiquidCrystal* LCD;
-	String leadingChar, ValueAsString;
+	String ValueAsString;
+	unsigned char leadingChar;
     editObject *Next, *Prev;
-	bool readOnly, editMode;
+	bool readOnly, editMode, Active;
 public:
 	void setXY(int x, int y);
-	void setLeadingChar(String c);
+	void setLeadingChar(unsigned char c);
+	void setActive(bool active);
+	bool isActive();
 	void setLCD (LiquidCrystal* newLCD);
 	void setValue(int newValue);
 	void incrementValue(int increment);
