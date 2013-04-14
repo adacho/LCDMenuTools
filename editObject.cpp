@@ -25,10 +25,7 @@ void editObject::setValue(int newValue){
 
 void editObject::print(){
 	LCD->setCursor(X,Y);
-	if (Prev->isActive and this !=Prev)
-		LCD->Write(byte(2));
-	else
-		LCD->write(editMode?byte(0):leadingChar);
+      	LCD->write(editMode?byte(0):leadingChar);
 	LCD->print(ValueAsString);
 }
 
@@ -54,15 +51,16 @@ editObject::editObject(int x, int y, int minval, int maxval, LiquidCrystal* newL
 	LCD = newLCD;
 	Next = next;
 	Prev = prev;
+	Active = false;
 	if (Prev != NULL) Prev->setNext(this);
 	//if (Next != NULL) Next->setPrev(this);
 	readOnly = true;
 	editMode = false;
 	if (next == NULL) {
-		next = this;
+		Next = this;
 	}
 	if (prev == NULL) {
-		prev = this;
+		Prev = this;
 	}
 	
 }

@@ -1,3 +1,6 @@
+#ifndef EDITOBJECT_H
+#define EDITOBJECT_H
+
 #include <WString.h>
 #include <RTClib.h>
 #include <LiquidCrystal.h>
@@ -31,3 +34,5 @@ public:
 	void setEditMode(bool mode);
 	bool getEditMode();
 };
+
+#endif
