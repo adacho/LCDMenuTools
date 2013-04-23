@@ -2,14 +2,12 @@
 #include <RTClib.h>
 #include <LiquidCrystal.h>
 #include "editObject.h"
-//#include "relayChannel.h"
 
 LiquidCrystal lcd(8,9,4,5,6,7);
 RTC_DS1307 rtc;
 editObject godzina(3, 0, 0, 23, &lcd, NULL, NULL);
 editObject minuta(6, 0, 0, 59, &lcd, NULL, &godzina);
 editObject sekunda(9, 0, 0, 59, &lcd, &godzina, &minuta );
-//relayChannel channel1(13, false, false, event, 1, 3);
 
 byte updown[8] = {
   B00100,
@@ -43,7 +41,6 @@ B10000
 };
 
 void setup() {
-  // put your setup code here, to run once:
   lcd.begin(16,2);
   Wire.begin();
   rtc.begin();
@@ -56,18 +53,6 @@ void setup() {
   lcd.setCursor(0,0);
   sekunda.setReadOnly(false);
   sekunda.setActive(false);
-}
-
-void displayTime(editObject* h, editObject* m, editObject* s)
-{
-  editObject* t[] = {h, m, s};
-  int act = -1;
-  for (int i = 0; i < 3; i++)
-  {
-    if (t[i]->isActive() || t[i]->getEditMode()) act = i;
-    else t[i]->print();
-  }
-  if (act>=0) t[act]->print();
 }
 
 void loop() 
@@ -86,6 +71,4 @@ void loop()
     lcd.setCursor(0,0);
     lcd.print("Nie dziala RTC");
   }
-  
-  
 }

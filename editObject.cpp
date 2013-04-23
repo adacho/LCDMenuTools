@@ -23,9 +23,7 @@ void editObject::setValue(int newValue)
     Value=newValue;
     ValueAsString = String(Value);
     if (ValueAsString.length() <= 1)
-    {
       ValueAsString = '0' + ValueAsString;
-    }
   }
 }
 
@@ -76,6 +74,10 @@ editObject::editObject(int x, int y, int minval, int maxval, LiquidCrystal* newL
   Y = y;
   minValue = minval;
   maxValue = maxval;
+  Value = minval;
+  ValueAsString = String(Value);
+  if (ValueAsString.length() <= 1)
+    ValueAsString = '0' + ValueAsString;
   LCD = newLCD;
   Next = next;
   Prev = prev;
@@ -85,13 +87,9 @@ editObject::editObject(int x, int y, int minval, int maxval, LiquidCrystal* newL
   readOnly = true;
   editMode = false;
   if (next == NULL)
-  {
     Next = this;
-  }
   if (prev == NULL)
-  {
     Prev = this;
-  }	
 }
 
 void editObject::setReadOnly(bool mode)
@@ -127,4 +125,16 @@ void editObject::setActive(bool active)
 bool editObject::isActive()
 {
   return Active;
+}
+
+void displayTime(editObject* h, editObject* m, editObject* s)
+{
+  editObject* t[] = {h, m, s};
+  int act = -1;
+  for (int i = 0; i < 3; i++)
+  {
+    if (t[i]->isActive() || t[i]->getEditMode()) act = i;
+    else t[i]->print();
+  }
+  if (act>=0) t[act]->print();
 }

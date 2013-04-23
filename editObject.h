@@ -6,7 +6,6 @@
 #include <LiquidCrystal.h>
 #include <Arduino.h>
 
-
 class editObject
 {
   private:
@@ -35,5 +34,7 @@ class editObject
     void setEditMode(bool mode);
     bool getEditMode();
 };
+
+void displayTime(editObject* h, editObject* m, editObject* s);
 
 #endif

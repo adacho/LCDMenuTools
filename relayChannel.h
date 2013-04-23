@@ -7,7 +7,7 @@ enum rcMode {timer, event, schedule};
 class  relayChannel
 {
   private:
-    bool Enabled; //is channel active
+    bool Enabled; //is channel enabled
     bool Active; //is channel working now
     rcMode Mode; // is channel set to work in timer mode, schedule (user defined) or eventMode
     int ActivationValue, DeactivationValue; //used in event mode to activate/deactivate module
