@@ -3,14 +3,14 @@
 
 #include <WString.h>
 #include <RTClib.h>
-#include <LiquidCrystal.h>
+#include <LiquidCrystal_I2C.h>
 #include <Arduino.h>
 
 class editObject
 {
   private:
     int X, Y, Value, minValue, maxValue;
-    LiquidCrystal* LCD;
+    LiquidCrystal_I2C* LCD;
     String ValueAsString;
     unsigned char leadingChar;
     editObject *Next, *Prev;
@@ -20,7 +20,7 @@ class editObject
     void setLeadingChar(unsigned char c);
     void setActive(bool active);
     bool isActive();
-    void setLCD (LiquidCrystal* newLCD);
+    void setLCD (LiquidCrystal_I2C* newLCD);
     void setValue(int newValue);
     void incrementValue(int increment);
     void decrementValue(int decrement);
@@ -29,7 +29,7 @@ class editObject
     void print();
     editObject* getPrev();
     editObject* getNext();
-    editObject(int x, int y, int minval, int maxval, LiquidCrystal* newLCD, editObject* next, editObject* prev);
+    editObject(int x, int y, int minval, int maxval, LiquidCrystal_I2C* newLCD, editObject* next, editObject* prev);
     void setReadOnly(bool mode);
     void setEditMode(bool mode);
     bool getEditMode();

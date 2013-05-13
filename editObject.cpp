@@ -11,7 +11,7 @@ void editObject::setLeadingChar(unsigned char c)
   leadingChar = c;
 }
 
-void editObject::setLCD (LiquidCrystal* newLCD)
+void editObject::setLCD (LiquidCrystal_I2C* newLCD)
 {
   LCD = newLCD;
 }
@@ -68,7 +68,7 @@ editObject* editObject::getNext()
 {
   return Next;
 }
-editObject::editObject(int x, int y, int minval, int maxval, LiquidCrystal* newLCD, editObject* next, editObject* prev)
+editObject::editObject(int x, int y, int minval, int maxval, LiquidCrystal_I2C* newLCD, editObject* next, editObject* prev)
 {
   X = x;
   Y = y;

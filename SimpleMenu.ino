@@ -1,9 +1,9 @@
 #include <Wire.h>
 #include <RTClib.h>
-#include <LiquidCrystal.h>
+#include <LiquidCrystal_I2C.h>
 #include "editObject.h"
 
-LiquidCrystal lcd(8,9,4,5,6,7);
+LiquidCrystal_I2C lcd(0x20,16,2);
 RTC_DS1307 rtc;
 editObject godzina(3, 0, 0, 23, &lcd, NULL, NULL);
 editObject minuta(6, 0, 0, 59, &lcd, NULL, &godzina);
@@ -41,7 +41,8 @@ B10000
 };
 
 void setup() {
-  lcd.begin(16,2);
+  lcd.init();
+  lcd.backlight();
   Wire.begin();
   rtc.begin();
   godzina.setLeadingChar(' ');
